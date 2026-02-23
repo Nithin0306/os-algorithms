@@ -1,50 +1,16 @@
-# 🖥️ Operating System Lab Algorithms
+# 🖥️ Operating System Algorithms
 
 A comprehensive collection of Operating System algorithms and concepts implemented in C. This repository is designed to help students understand OS internals through practical, runnable examples.
 
 ## 📚 About
 
 This repository contains implementations of important Operating System concepts in C, created primarily for:
-- Lab practice and exam preparation
 - Understanding system programming concepts
 - Bridging the gap between theory and practical implementation
+- Lab practice and exam preparation
 
 All programs are written in a simple, structured way to make OS concepts accessible and experiment-friendly.
 
-## 📂 What's Inside
-
-The repository covers essential OS topics including:
-
-### Process Management
-- Process creation using `fork()`, `wait()`, `exec()` family
-- Process synchronization
-- Zombie and orphan processes
-
-### Interprocess Communication (IPC)
-- Pipes (named and unnamed)
-- Shared memory
-- Message queues
-- Signals
-
-### Thread Programming
-- Thread creation and management
-- Race condition demonstrations
-- Thread synchronization
-
-### Synchronization Mechanisms
-- Mutex locks
-- Semaphores
-- Condition variables
-
-### Classical Problems
-- Producer-Consumer problem
-- Readers-Writers problem
-- Dining Philosophers problem
-- Sleeping Barber problem
-
-### Memory Management
-- Page replacement algorithms (FIFO, LRU, Optimal)
-- Memory allocation strategies
 
 ## 🚀 Getting Started
 
