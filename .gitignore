@@ -1,0 +1,20 @@
+# Compiled files
+*.out
+*.o
+*.exe
+a.out
+
+# Core dumps
+core
+core.*
+
+# Build folders
+build/
+bin/
+
+# Temporary / editor files
+*~
+*.swp
+.vscode/
+.idea/
+.DS_Store
