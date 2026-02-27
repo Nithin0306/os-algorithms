@@ -4,8 +4,8 @@
 
 int main() {
     int fd1[2], fd2[2];
-    pipe(fd1);
-    pipe(fd2);
+    pipe(fd1);  // parent -> child
+    pipe(fd2);  // child -> parent
 
     pid_t pid = fork();
 
@@ -15,7 +15,7 @@ int main() {
 
         char msg[100];
         read(fd1[0], msg, sizeof(msg));
-        printf("Child received: %s\n", msg);
+        printf("Child got: %s\n", msg);
 
         write(fd2[1], "Hello Parent", 13);
     }
@@ -27,7 +27,7 @@ int main() {
 
         char msg[100];
         read(fd2[0], msg, sizeof(msg));
-        printf("Parent received: %s\n", msg);
+        printf("Parent got: %s\n", msg);
     }
 
     return 0;
