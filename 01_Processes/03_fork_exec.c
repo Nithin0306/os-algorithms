@@ -6,11 +6,12 @@ int main() {
     pid_t pid = fork();
 
     if (pid == 0) {
-        printf("Child executing\n");
+        // replace child with new program
+        execlp("ls", "ls", NULL);
     }
     else {
         wait(NULL);
-        printf("Parent resumes after child\n");
+        printf("Child completed execution\n");
     }
 
     return 0;

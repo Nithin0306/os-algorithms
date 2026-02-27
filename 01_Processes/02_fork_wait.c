@@ -6,11 +6,11 @@ int main() {
     pid_t pid = fork();
 
     if (pid == 0) {
-        execlp("ls", "ls", NULL);
+        printf("Child running...\n");
     }
     else {
-        wait(NULL);
-        printf("Child finished\n");
+        wait(NULL);   // parent waits for child to finish
+        printf("Parent resumes after child\n");
     }
 
     return 0;
