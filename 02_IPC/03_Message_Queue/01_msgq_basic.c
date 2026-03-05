@@ -1,25 +1,36 @@
 #include <stdio.h>
-#include <sys/ipc.h>
-#include <sys/msg.h>
+#include <stdlib.h>
 #include <string.h>
-
-struct message {
-    long type;
-    char text[100];
-};
+#include <fcntl.h>
+#include <sys/stat.h>
+#include <mqueue.h>
 
 int main() {
-    int msgid = msgget(IPC_PRIVATE, 0666 | IPC_CREAT);
 
-    struct message msg;
-    msg.type = 1;
-    strcpy(msg.text, "Hello Message Queue");
+    mqd_t mq;              // message queue descriptor
+    char buffer[100];      // buffer for received message
 
-    msgsnd(msgid, &msg, sizeof(msg.text), 0);
-    msgrcv(msgid, &msg, sizeof(msg.text), 1, 0);
+    struct mq_attr attr;   // queue attributes
 
-    printf("Received: %s\n", msg.text);
+    // configure queue properties
+    attr.mq_flags = 0;        // blocking mode
+    attr.mq_maxmsg = 10;      // max messages in queue
+    attr.mq_msgsize = 100;    // max size of each message
+    attr.mq_curmsgs = 0;
 
-    msgctl(msgid, IPC_RMID, NULL);  // remove queue
+    // create/open POSIX message queue
+    mq = mq_open("/myqueue", O_CREAT | O_RDWR, 0666, &attr);
+
+    // send a message into the queue
+    mq_send(mq, "Hello POSIX Queue", 18, 0);
+
+    // receive message from the queue
+    mq_receive(mq, buffer, 100, NULL);
+
+    printf("Received: %s\n", buffer);
+
+    mq_close(mq);           // close queue descriptor
+    mq_unlink("/myqueue");  // remove queue from system
+
     return 0;
 }
